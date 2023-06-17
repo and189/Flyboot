@@ -1,0 +1,54 @@
+# Flyboot Skript
+
+Dieses Skript überwacht eine Liste von Geräten und führt bei Bedarf einen Neustart oder Reboot durch.
+
+## Voraussetzungen
+
+- Python 3.10
+- MySQL-Datenbank
+
+## Installation
+
+1. Klone das Repository auf deinen Computer.
+2. Installiere die erforderlichen Python-Pakete mit dem Befehl `pip install -r requirements.txt`.
+3. Erstelle eine `.env`-Datei im Hauptverzeichnis des Projekts und füge die erforderlichen Konfigurationsvariablen hinzu (siehe unten).
+4. Führe das Skript mit dem Befehl `python main.py` aus.
+
+## Konfiguration
+
+Die Konfiguration des Skripts erfolgt über Umgebungsvariablen, die in einer `.env`-Datei im Hauptverzeichnis des Projekts definiert werden müssen. Hier ist eine Liste der erforderlichen Variablen:
+
+- `DB_HOST`: Der Hostname oder die IP-Adresse des MySQL-Servers.
+- `DB_USER`: Der Benutzername für den Zugriff auf die MySQL-Datenbank.
+- `DB_PASSWORD`: Das Passwort für den Zugriff auf die MySQL-Datenbank.
+- `DB_NAME`: Der Name der MySQL-Datenbank.
+- `RESTART_WAIT`: Die Anzahl der Minuten, die gewartet werden soll, bevor ein Neustart ausgeführt wird.
+- `REBOOT_WAIT`: Die Anzahl der Minuten, die gewartet werden soll, bevor ein Reboot ausgeführt wird.
+- `ADBLOC`: Der Pfad zum ADB-Binary.
+- `API_URL`: Die URL zur API, die verwendet wird, um den Status der Geräte abzufragen.
+- `API_TOKEN`: Der API-Token, der für den Zugriff auf die API verwendet wird.
+- `MAD_RESTART_URL`: Die URL zum Auslösen eines Neustarts über die MAD-API.
+
+Hier ist ein Beispiel für eine `.env`-Datei:
+
+DB_HOST=“192.168.1.211” 
+DB_USER=“xxxx” 
+DB_PASSWORD=“xx” 
+DB_NAME=“flyboot” 
+RESTART_WAIT=5 
+REBOOT_WAIT=5 
+INTERVAL=10 
+DEBUG=False 
+ADBLOC=“adb” 
+API_URL=“http://192.168.1.211:9002/api/workers/?perPage=1000” 
+API_TOKEN=“your_api_token_here” 
+MAD_RESTART_URL=“http://192.168.1.211:5005/restart_phone?origin=UUID&adb=False”
+
+
+## Verwendung
+
+Führe das Skript mit dem Befehl `python main.py` aus. Das Skript überwacht kontinuierlich die Geräte und führt bei Bedarf einen Neustart oder Reboot durch.
+
+## Lizenz
+
+Dieses Projekt steht unter der MIT-Lizenz.
